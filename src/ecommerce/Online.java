@@ -35,14 +35,16 @@ public class Online {
 	items.add(new Book("Head First Design Pattern", 37.35, 3, "Eric Freeman"));
 	
 	
-	boolean isExceptionOccured = false;
+	
 	//Create a Scanner object
 	Scanner sc = new Scanner(System.in);
+	
+	try {
 		
-	while (true) {			
+		while (true) {			
 		
-		System.out.println("Enter the product index (0 to 4) you want to buy.  To Exit the shopping cart, enter"
-				+ " any number other than 0 to 4");
+			System.out.println("Enter the product index (0 to 4) you want to buy.  To Exit the shopping cart, enter"
+					+ " any number other than 0 to 4");
 			int i = 0;
 			for (Product obj: items ) {
 				if (obj.getClass() == Book.class) {
@@ -71,12 +73,8 @@ public class Online {
 				i++;
 			}		
 			
-				
-			
-			try {
-					
-					
-					userInput = sc.nextInt(); 
+						
+					userInput = sc.nextInt();
 					if (items.get(userInput).buy()) {
 						System.out.println("Your purchase was successful");	
 						totalAmount += items.get(userInput).getPrice();	
@@ -86,32 +84,34 @@ public class Online {
 						System.out.println("Sorry! This product is out of stock");
 						
 					}
-					
-				}
+			}
+	}
+			
 
 			catch (InputMismatchException e) {
-				isExceptionOccured=true;
+				
 				System.out.println("Invalid input, exiting the Shopping Cart.  Your total amount is " + totalAmount);					
 				
 				
 			} 
 			catch (IndexOutOfBoundsException e) {
-				isExceptionOccured=true;
+				
 				System.out.println("Thank you for shopping with us!  The total amount is " + totalAmount);
 					
 			}
 			finally {
 				//Close the scanner file
-				if (isExceptionOccured) {
+				
 					sc.close();
-					break;
-				}
+					
+				
 			
 			}
 	
 
 		}
 			
-	}
 
-}
+	}
+	
+
